@@ -1,0 +1,14 @@
+var express = require('express');
+var app = express();
+app.set('view engine', 'jade');
+app.use(express.static(__dirname));
+var bodyParser = require('body-parser');
+var jsonParser = require('body-parser').json();
+app.use(jsonParser);
+app.use(bodyParser.urlencoded({extended: false}));
+var router = require('./routes/comments');
+app.use('/', router);
+app.use('/all', router);
+app.use('/form', router);
+console.log("Connected!");
+app.listen(4000);

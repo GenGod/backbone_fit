@@ -107,69 +107,6 @@ router.post('/form', function (request, response) {
                 return console.log(err);
         }
     );
-    /*if (!request.body) {
-        console.log("Тут оно есть!");
-        return response.sendStatus(400);
-    }
-    var comment = {
-        userName: request.body.userName,
-        theme: request.body.theme,
-        comment: request.body.comment,
-        time: +request.body.time
-    };
-    var conform = require('conform');
-    var isComrom = conform.validate(comment, {
-        properties: {
-            userName: {
-                type: "string",
-                required: true
-            },
-            theme: {
-                type: "string",
-                required: true
-            },
-            comment: {
-                type: "any",
-                required: true
-            },
-            time: {
-                type: "number",
-                required: true
-            }
-        }
-    });
-    if (isComrom.valid) {
-        client.db.collection("comments").insertOne(comment, function (err, result) {
-            if (err)
-                return console.log(err);
-        });
-    }
-    else {
-        console.dir(isComrom.errors);
-    }
-    var date;
-    if (!value.time) {
-        date = "";
-    }
-    else if (+new Date() === value.time) {
-        date = "только что";
-    }
-    else if (+new Date() - value.time < 86400000) {
-        date = moment(value.time).fromNow();
-    } else {
-        date = moment().calendar(value.time, {
-            sameDay: '[Today]',
-            lastDay: '[Yesterday]',
-            lastWeek: '[Last] dddd',
-            sameElse: 'DD.MM.YYYY'
-        });
-    }
-    response.end(JSON.stringify({
-        userName: request.body.userName,
-        theme: request.body.theme,
-        comment: request.body.comment,
-        time: date
-    }));*/
 });
 
 module.exports = router;

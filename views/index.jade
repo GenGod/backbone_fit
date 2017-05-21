@@ -1,0 +1,28 @@
+html
+    head
+        title=title
+        link(rel='stylesheet', href='css/bootstrap.min.css')
+    body
+        div.container
+            h1.h1.text-primary Оставить комментарий
+            form.form-horizontal(method='post', action='/index', name='commentsForm')
+                div.form-group
+                    label.control-label Введите своё имя
+                    input.form-control.input-sm(type='text', name='userName', placeholder='Введите имя...')
+                div.form-group
+                    label.control-label Тема
+                    input.form-control.input-sm(type='text', name='theme', placeholder='Тема')
+                div.form-group
+                    label.control-label Введите Ваш комментарий
+                    input.form-control.input-sm(type='text', name='comment', placeholder='Комментарий...')
+                input.btn.btn-success(type='submit', value='Оставить')
+            div#comments
+            script(src='js/library/jquery.js')
+            script(src='js/library/bootstrap.min.js')
+            //script(data-main='js/main' src='js/require.js')
+            script(src='js/library/underscore.js')
+            script(src='js/library/backbone.js')
+            script(src='js/models/main.js')
+            script(src='js/collections/mainCollection.js')
+            script(src='js/views/main.js')
+            script(src='js/main.js')

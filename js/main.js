@@ -4,7 +4,6 @@
 //        function start() {
             var model = new mainModel();
             var view = new mainView({model: model});
-            moment.locale('ru');
 
             $.ajax({
                 type: 'get',

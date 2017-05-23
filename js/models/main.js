@@ -1,8 +1,8 @@
-define(['backbone'], function(Backbone) {
+define(['backbone', 'moment'], function(Backbone, moment) {
     var mainModel = Backbone.Model.extend({
         defaults: {
             userName: "Аноним",
-            time: +new Date().toDateString(),
+            time: moment().calendar(),
             theme: "<Без темы>",
             comment: ""
         }

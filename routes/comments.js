@@ -10,13 +10,13 @@ router.get('/all', function (request, response) {
     console.log("app.get('/all')");
     Steppy(
         function () {
-            client.db.collection("comments").find().toArray(this.slot());
+            client.dataBase.collection("comments").find().toArray(this.slot());
         },
         function (err, result) {
             if (err) {
                 console.error("Data not found!");
             } else {
-                var data = [];
+                var commentData = [];
                 _.each(result, function (value) {
                     var date;
                     if (!value.time) {
@@ -35,14 +35,14 @@ router.get('/all', function (request, response) {
                             sameElse: 'DD.MM.YYYY'
                         });
                     }
-                    data.push({
+                    commentData.push({
                         userName: value.userName,
                         theme: value.theme,
                         comment: value.comment,
                         time: date
                     });
                 });
-                response.end(JSON.stringify(data));
+                response.end(JSON.stringify(commentData));
             }
         }
     );
@@ -59,7 +59,6 @@ router.post('/form', function (request, response) {
     Steppy(
         function () {
             if (!request.body) {
-                console.log("Тут оно есть!");
                 return response.sendStatus(400);
             }
             var comment = {
@@ -90,7 +89,7 @@ router.post('/form', function (request, response) {
                 }
             });
             if (isComrom.valid) {
-                client.db.collection("comments").insertOne(comment, this.slot());
+                client.dataBase.collection("comments").insertOne(comment, this.slot());
             }
             else {
                 console.dir(isComrom.errors);
@@ -99,12 +98,12 @@ router.post('/form', function (request, response) {
                 userName: request.body.userName,
                 theme: request.body.theme,
                 comment: request.body.comment,
-                time: "только что"
+                time: moment().calendar()
             }));
         },
         function (err, result) {
             if (err)
-                return console.log(err);
+                throw new Error;
         }
     );
 });

@@ -4,6 +4,9 @@ require.config({
         jquery: 'jquery',
         underscore: 'underscore',
         backbone: 'backbone',
+        text: 'text',
+        templates: '../../templates',
+        moment: 'moment-with-locales.min',
         collections: '../collections',
         models: '../models',
         views: '../views'

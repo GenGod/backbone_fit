@@ -10,5 +10,4 @@ var router = require('./routes/comments');
 app.use('/', router);
 app.use('/all', router);
 app.use('/form', router);
-console.log("Connected!");
 app.listen(4000);

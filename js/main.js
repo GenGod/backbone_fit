@@ -1,8 +1,6 @@
 define(['collections/mainCollection', 'models/main', 'views/main', 'underscore', 'backbone', 'jquery'], function(
     mainCollection, mainModel, mainView, _, Backbone, $) {
     var Application = (function() {
-            var model = new mainModel();
-            var view = new mainView({model: model});
 
             $('form').submit(function (e) {
                 e.preventDefault();
@@ -25,16 +23,16 @@ define(['collections/mainCollection', 'models/main', 'views/main', 'underscore',
                     }),
                     dataType: "json",
                     contentType: "application/json",
-                    success: function (data) {
-                        if (data) {
-                            var v = new mainView({model: data});
-                            v.render();
+                    success: function (commentData) {
+                        if (commentData) {
+                            var view = new mainView({model: commentData});
+                            view.render();
                         }
                     }
                 });
             });
 
-            var self = null;
+            var self;
 
             var module = function() {
                 self = this;
@@ -52,11 +50,11 @@ define(['collections/mainCollection', 'models/main', 'views/main', 'underscore',
                         $.ajax({
                             type: 'get',
                             url: '/all',
-                            success: function (data) {
-                                var t = JSON.parse(data);
-                                _.each(t, function (i) {
-                                    var v = new mainView({model: i});
-                                    v.render();
+                            success: function (commentData) {
+                                var comments = JSON.parse(commentData);
+                                _.each(comments, function (comment) {
+                                    var view = new mainView({model: comment});
+                                    view.render();
                                 });
                             }
                         });

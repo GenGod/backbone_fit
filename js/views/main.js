@@ -1,4 +1,4 @@
-//define(['backbone', 'underscore', 'jquery'], function(Backbone, _, $) {
+define(['backbone', 'underscore', 'jquery'], function(Backbone, _, $) {
     var mainView = Backbone.View.extend({
         template: _.template('<div class=row>' +
             '<h4 class="h4"><%= this.model.userName %> <i class="small">' +
@@ -11,5 +11,5 @@
             return this;
         }
     });
-  //  return mainView;
-//});
+    return mainView;
+});

@@ -1,21 +1,8 @@
-//define(['collections/mainCollection', 'models/main', 'views/main', 'underscore', 'backbone', 'jquery'], function(
-    //mainCollection, mainModel, mainView, _, Backbone, $) {
-  //  var Application = (function() {
-//        function start() {
+define(['collections/mainCollection', 'models/main', 'views/main', 'underscore', 'backbone', 'jquery'], function(
+    mainCollection, mainModel, mainView, _, Backbone, $) {
+    var Application = (function() {
             var model = new mainModel();
             var view = new mainView({model: model});
-
-            $.ajax({
-                type: 'get',
-                url: '/all',
-                success: function (data) {
-                    var t = JSON.parse(data);
-                    _.each(t, function (i) {
-                        var v = new mainView({model: i});
-                        v.render();
-                    });
-                }
-            });
 
             $('form').submit(function (e) {
                 e.preventDefault();
@@ -46,7 +33,37 @@
                     }
                 });
             });
-        //}
-    //});
-  //  return Application;
-//});
+
+            var self = null;
+
+            var module = function() {
+                self = this;
+            };
+
+            module.prototype =
+                {
+                    constructor: module,
+
+                    init: function() {
+                        self.initViews();
+                    },
+
+                    initViews: function() {
+                        $.ajax({
+                            type: 'get',
+                            url: '/all',
+                            success: function (data) {
+                                var t = JSON.parse(data);
+                                _.each(t, function (i) {
+                                    var v = new mainView({model: i});
+                                    v.render();
+                                });
+                            }
+                        });
+                    }
+
+                };
+            return module;
+    })();
+    return Application;
+});

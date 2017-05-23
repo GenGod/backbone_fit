@@ -1,4 +1,4 @@
-//define(['backbone'], function(Backbone) {
+define(['backbone'], function(Backbone) {
     var mainModel = Backbone.Model.extend({
         defaults: {
             userName: "Аноним",
@@ -7,5 +7,5 @@
             comment: ""
         }
     });
-//    return mainModel;
-//});
+    return mainModel;
+});

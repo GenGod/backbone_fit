@@ -1,9 +1,9 @@
 require.config({
     baseUrl: 'js/library',
     paths: {
-        underscore: 'library/underscore',
-        jquery: 'library/jquery',
-        backbone: 'library/backbone',
+        jquery: 'jquery',
+        underscore: 'underscore',
+        backbone: 'backbone',
         collections: '../collections',
         models: '../models',
         views: '../views'
@@ -19,9 +19,9 @@ require.config({
     }
 });
 
-require(['library/jquery', 'main'], function ($, Application) {
+require(['jquery', '../main'], function ($, Application) {
     $(document).ready(function() {
         var app = new Application();
-        app.start();
+        app.init();
     })
 });
